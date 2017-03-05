@@ -1,0 +1,89 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 04</title>
+  </head>
+  <style>
+	#queue span{
+		height:30px;
+		background: red;
+		display: inline-block;
+		text-align: center;
+		line-height: 30px;
+		margin-left:20px;
+	}
+  </style>
+<body>
+
+
+<input type='text' id='text'><button id='lputh' class='button lputh'>左侧入</button><button id='rputh' class='button'>右侧入</button><button id='lpop' class='button'>左侧出</button><button id='rpop' class='button'>右侧出</button>
+<div id='queue'>
+	
+</div>
+
+</body>
+<script>
+//希望老师 多多点评
+
+//添加左侧入事件
+var lputh = document.getElementById('lputh');
+
+lputh.onclick = function(){
+	//获取text的值
+	var text     =  document.getElementById('text').value;
+	var queue    =  document.getElementById('queue');
+	//console.log(queue.getElementsByTagName('span')[0]);
+	var newItem  = document.createElement("span");			//创建一个span 节点
+	var textnode = document.createTextNode(text);			//把获取到的值赋值
+	newItem.appendChild(textnode);
+	queue.appendChild(newItem);
+	
+}
+
+//添加右侧入事件
+var rputh = document.getElementById('rputh');
+rputh.onclick = function(){
+
+	var text     = document.getElementById('text').value;
+	var queue    = document.getElementById('queue');
+	var newItem  = document.createElement('span');
+	var textnode = document.createTextNode(text);
+	newItem.appendChild(textnode);
+	queue.insertBefore(newItem,queue.getElementsByTagName('span')[0]);		//添加在第一个span 的前面
+}
+
+
+//添加左侧出事件
+var lpop = document.getElementById('lpop');
+lpop.onclick = function(){
+
+
+	var queue    = document.getElementById('queue');
+	var span     = queue.getElementsByTagName('span');
+	alert(span[span.length-1].innerHTML);					//提示 删掉的值
+	queue.removeChild(span[span.length-1]);					//删除span中最后一个span
+		
+}
+
+//添加右侧出事件
+var rpop = document.getElementById('rpop');
+rpop.onclick = function(){
+
+	var queue    = document.getElementById('queue');
+	var span     = queue.getElementsByTagName('span');
+	alert(span[0].innerHTML);					//提示 删掉的值
+	queue.removeChild(span[0]);					//删除span 中第一个值
+		
+}
+
+var queue = document.getElementById('queue');
+queue.onclick = function(e){
+	e = e || window.event;
+	var t = e.target || e.srcElement;
+
+	if(t.tagName == 'SPAN'){
+		queue.removeChild(t);
+	}
+}
+</script>
+</html>
