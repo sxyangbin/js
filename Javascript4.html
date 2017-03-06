@@ -82,6 +82,7 @@ queue.onclick = function(e){
 	var t = e.target || e.srcElement;  //e 对象的下面有  target srcElement 这2个下面的tagName 在现在都是显示为SPAN的
 
 	if(t.tagName == 'SPAN'){
+		alert(t.innerHTML);
 		queue.removeChild(t);
 	}
 }
